@@ -3,7 +3,9 @@ import 'package:flutter/physics.dart';
 import 'package:expense_tracker_max/models/expense.dart';
 
 class NewExpense extends StatefulWidget {
-  NewExpense({super.key});
+  NewExpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() {
@@ -37,7 +39,24 @@ class _NewExpenseState extends State<NewExpense> {
     if (_titleController.text.trim().isEmpty ||
         amountIsInvalid ||
         _selectedDate == null) {
-      // sow error mensaje
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text(
+            'Plase make sure a valid title, amount, date and category was entere',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: Text('Okay'),
+            ),
+          ],
+        ),
+      );
+      return;
     }
   }
 

@@ -32,6 +32,12 @@ class _ExpensesState extends State<Expenses> {
     showModalBottomSheet(context: context, builder: (ctx) => NewExpense());
   }
 
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
