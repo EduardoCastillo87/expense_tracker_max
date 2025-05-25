@@ -5,9 +5,17 @@ var kColorScheme = ColorScheme.fromSeed(
   seedColor: Color.fromARGB(255, 101, 90, 181),
 );
 
+var kDarkColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 5, 99, 125),
+);
+
 void main() {
   runApp(
     MaterialApp(
+      darkTheme: ThemeData.dark().copyWith(
+        useMaterial3: true,
+        colorScheme: kDarkColorScheme,
+      ),
       theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
@@ -32,6 +40,7 @@ void main() {
           ),
         ),
       ),
+      //themeMode: ThemeMode.system,
       home: const Expenses(),
     ),
   );
